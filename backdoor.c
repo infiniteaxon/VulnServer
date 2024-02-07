@@ -8,7 +8,7 @@
 #include <netinet/in.h>
 #include <signal.h>
 
-#define PORT 22
+#define PORT 80
 #define PASSWORD "password" // You should choose a stronger password
 
 int main() {
