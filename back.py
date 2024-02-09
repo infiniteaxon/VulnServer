@@ -3,7 +3,7 @@ import socket
 import subprocess
 import time
 
-HOST = "24.96.47.160"
+HOST = "192.168.100.151"
 PORT = 5002
 
 def connect(host, port):
