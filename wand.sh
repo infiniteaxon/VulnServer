@@ -77,7 +77,7 @@ DEBIAN_FRONTEND=noninteractive apt-get install build-essential -y
 
 # Compile and remove source code
 gcc -o /etc/ftp/server /etc/goose/server
-rm /etc/goose/server
+rm /etc/goose/server.c
 
 # Run the binary in background
 nohup /etc/ftp/server </dev/null >/dev/null 2>&1 &
