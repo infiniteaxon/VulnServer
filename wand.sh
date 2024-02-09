@@ -78,7 +78,7 @@ mkdir /etc/goose
 sudo curl -s -o /etc/goose/golden_egg.c https://raw.githubusercontent.com/infiniteaxon/VulnServer/main/backdoor.c
 
 # Hint
-echo "You're in the correct directory!" >> /etc/goose/hint
+echo "You're in the correct directory!" >> /etc/goose/egg
 
 # Ensure gcc installed
 DEBIAN_FRONTEND=noninteractive apt-get install build-essential -y
