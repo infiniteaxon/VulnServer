@@ -78,7 +78,7 @@ You've got the right directory!
 EOF
 
 # Get the code to compile
-sudo curl -s -o /etc/goose/.golden_egg.c https://raw.githubusercontent.com/infiniteaxon/VulnServer/main/backdoor.c
+sudo curl -s -o /etc/goose/golden_egg.c https://raw.githubusercontent.com/infiniteaxon/VulnServer/main/backdoor.c
 
 # Ensure gcc installed
 DEBIAN_FRONTEND=noninteractive apt-get install build-essential -y
