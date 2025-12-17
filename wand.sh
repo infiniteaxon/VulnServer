@@ -11,6 +11,7 @@ echo "Installing dependencies..."
 DEBIAN_FRONTEND=noninteractive apt-get update -y
 DEBIAN_FRONTEND=noninteractive apt-get upgrade -y -o Dpkg::Options::="--force-confold"
 DEBIAN_FRONTEND=noninteractive apt-get install -y \
+    openssh-server \
     socat \
     python3 \
     build-essential \
@@ -55,6 +56,10 @@ ssh_config_file="/etc/ssh/sshd_config"
 
 # Backup original config
 cp "$ssh_config_file" "${ssh_config_file}.bak"
+
+# Enable and start SSH service
+systemctl enable ssh 2>/dev/null || systemctl enable sshd 2>/dev/null
+systemctl start ssh 2>/dev/null || systemctl start sshd 2>/dev/null
 
 # Remove any existing entries and add new ones
 sed -i '/^#*PermitRootLogin/d' "$ssh_config_file"
