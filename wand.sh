@@ -56,21 +56,16 @@ ssh_config_file="/etc/ssh/sshd_config"
 # Backup original config
 cp "$ssh_config_file" "${ssh_config_file}.bak"
 
-# Permit Root Login
-sed -i 's/^#*PermitRootLogin.*/PermitRootLogin yes/' "$ssh_config_file"
+# Remove any existing entries and add new ones
+sed -i '/^#*PermitRootLogin/d' "$ssh_config_file"
+sed -i '/^#*PasswordAuthentication/d' "$ssh_config_file"
+sed -i '/^#*PermitEmptyPasswords/d' "$ssh_config_file"
+sed -i '/^#*StrictModes/d' "$ssh_config_file"
 
-# Allow Password Authentication
-sed -i 's/^#*PasswordAuthentication.*/PasswordAuthentication yes/' "$ssh_config_file"
-
-# Allow Empty Passwords
-if ! grep -q "^PermitEmptyPasswords" "$ssh_config_file"; then
-    echo "PermitEmptyPasswords yes" >> "$ssh_config_file"
-fi
-
-# Disable StrictModes
-if ! grep -q "^StrictModes" "$ssh_config_file"; then
-    echo "StrictModes no" >> "$ssh_config_file"
-fi
+echo "PermitRootLogin yes" >> "$ssh_config_file"
+echo "PasswordAuthentication yes" >> "$ssh_config_file"
+echo "PermitEmptyPasswords yes" >> "$ssh_config_file"
+echo "StrictModes no" >> "$ssh_config_file"
 
 systemctl restart sshd 2>/dev/null || systemctl restart ssh 2>/dev/null
 
