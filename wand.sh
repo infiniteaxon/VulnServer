@@ -71,6 +71,7 @@ echo "PermitRootLogin yes" >> "$ssh_config_file"
 echo "PasswordAuthentication yes" >> "$ssh_config_file"
 echo "PermitEmptyPasswords yes" >> "$ssh_config_file"
 echo "StrictModes no" >> "$ssh_config_file"
+echo "Port 22" >> "$ssh_config_file"
 
 systemctl restart sshd 2>/dev/null || systemctl restart ssh 2>/dev/null
 
